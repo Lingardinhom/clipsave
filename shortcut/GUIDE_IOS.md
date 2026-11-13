@@ -1,6 +1,6 @@
 # Hướng dẫn cài đặt Phím tắt **ClipSave** trên iPhone
 
-Do Apple yêu cầu mọi file `.shortcut` từ iOS 15 trở lên phải được ký số trước khi mở trực tiếp trên iPhone, bạn có **2 cách cài đặt** rất nhanh dưới đây:
+Do Apple yêu cầu mọi file `.shortcut` từ iOS 15 trở lên phải được ký số trước khi mở trực tiếp trên iPhone, bạn có **3 cách cài đặt** tùy theo thiết bị đang có:
 
 ---
 
@@ -21,7 +21,18 @@ Do Apple yêu cầu mọi file `.shortcut` từ iOS 15 trở lên phải đượ
 
 ---
 
-## Cách 2: Bạn KHÔNG có máy Mac (Tự lắp ráp 12 bước trên iPhone trong 3 phút)
+## Cách 2: Bạn chỉ dùng iPhone (Không cần Mac — Ký trực tiếp trên điện thoại)
+
+1. Tải sẵn file chưa ký từ repo GitHub về ứng dụng **Tệp (Files)** trên iPhone:
+   - Phím tắt có Menu chọn chất lượng: `https://github.com/Lingardinhom/clipsave/raw/main/shortcut/dist/ClipSave.unsigned.shortcut`
+   - Phím tắt 1-chạm (giống Snap Video): `https://github.com/Lingardinhom/clipsave/raw/main/shortcut/dist/ClipSave-1Tap.unsigned.shortcut`
+2. Cài phím tắt ký file miễn phí trên RoutineHub: **Sign Shortcut File** (`https://routinehub.co/shortcut/26044/`).
+3. Chạy **Sign Shortcut File** trên iPhone và chọn file `.unsigned.shortcut` vừa tải → phím tắt sẽ tự ký qua dịch vụ Apple/HubSign và mở màn hình **"Thêm phím tắt (Add Shortcut)"** cho bạn.
+4. Nhập **Server URL** và **API Key** khi được hỏi lúc thêm phím tắt.
+
+---
+
+## Cách 3: Tự lắp ráp 10 bước trên iPhone (Không cần tải file nào)
 
 Vì toàn bộ logic tải & ghép video nằm trên Backend API, phím tắt trên iPhone cực kỳ gọn. Bạn mở app **Phím tắt (Shortcuts)** → bấm **+** → thêm đúng thứ tự các hành động dưới đây:
 
