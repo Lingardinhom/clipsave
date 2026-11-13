@@ -20,6 +20,7 @@ RUN uv pip install --system --no-cache -r /app/backend/pyproject.toml
 
 COPY backend/app /app/backend/app
 COPY web /app/web
+COPY shortcut/dist /app/shortcut/dist
 
 WORKDIR /app/backend
 

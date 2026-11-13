@@ -27,6 +27,13 @@ def test_shortcut_version_endpoint():
     assert resp.status_code == 200
     assert resp.json()["version"] == settings.shortcut_version
 
+    bundle_resp = client.get("/api/v1/shortcut/files/ClipSave-iOS-Bundle.zip")
+    assert bundle_resp.status_code == 200
+    assert len(bundle_resp.content) > 100
+
+    bad_resp = client.get("/api/v1/shortcut/files/../../etc/passwd")
+    assert bad_resp.status_code == 404
+
 
 def test_resolve_requires_api_key_when_configured(monkeypatch):
     monkeypatch.setattr(settings, "api_key", "super-secret")

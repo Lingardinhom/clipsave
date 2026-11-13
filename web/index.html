@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="ClipSave" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/icon.svg" />
   <title>ClipSave — Tải Video Đa Nền Tảng Không Watermark</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
@@ -87,13 +92,21 @@
     </section>
 
     <section class="card info-card">
-      <h3>Cài phím tắt ClipSave cho iPhone</h3>
+      <h3>Cài đặt &amp; Kiểm tra trên iPhone</h3>
       <p class="muted">
-        Phím tắt giúp bạn bấm <strong>Chia sẻ (Share)</strong> ngay trong TikTok / Douyin / Instagram / YouTube để lưu video không watermark thẳng vào Album <strong>ClipSave</strong> trong Ảnh.
+        <strong>Cách 1 (Test ngay không cần Mac):</strong> Mở trang này trên <strong>Safari iPhone</strong> → bấm nút <strong>Chia sẻ (Share)</strong> → chọn <strong>Thêm vào Màn hình chính (Add to Home Screen)</strong> để dùng như App iOS.
       </p>
+      <p class="muted" style="margin-top: 8px;">
+        <strong>Cách 2 (Phím tắt Apple Shortcuts):</strong> Tải gói cài đặt bên dưới (cần ký qua Mac bằng <code>sign_on_mac.sh</code> hoặc lắp 10 bước theo <code>GUIDE_IOS.md</code>).
+      </p>
+      <div class="input-row" style="margin-top: 12px; flex-wrap: wrap;">
+        <a class="download-link" href="/api/v1/shortcut/files/ClipSave-iOS-Bundle.zip" download>Tải Gói Cài Đặt (.zip)</a>
+        <a class="btn-secondary" style="text-decoration:none; padding: 8px 14px; display:inline-flex; align-items:center;" href="/api/v1/shortcut/files/ClipSave.unsigned.shortcut" download>ClipSave.unsigned.shortcut</a>
+        <a class="btn-secondary" style="text-decoration:none; padding: 8px 14px; display:inline-flex; align-items:center;" href="/api/v1/shortcut/files/ClipSave-1Tap.unsigned.shortcut" download>ClipSave-1Tap.unsigned.shortcut</a>
+      </div>
       <ul class="tips">
-        <li><strong>Endpoint API:</strong> <code id="endpointPreview"></code></li>
-        <li><strong>File Phím tắt:</strong> Xem thư mục <code>shortcut/dist/</code> và hướng dẫn trong <code>shortcut/GUIDE_IOS.md</code>.</li>
+        <li><strong>Endpoint API cho Phím tắt:</strong> <code id="endpointPreview"></code></li>
+        <li><strong>Hướng dẫn chi tiết:</strong> <code>shortcut/GUIDE_IOS.md</code></li>
       </ul>
     </section>
   </main>

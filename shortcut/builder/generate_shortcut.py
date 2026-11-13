@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import plistlib
 import uuid
+import zipfile
 from pathlib import Path
 from typing import Any
 
@@ -808,8 +809,19 @@ def main() -> None:
     with onetap_out.open("wb") as f:
         plistlib.dump(onetap_plist, f, fmt=plistlib.FMT_BINARY)
 
+    shortcut_root = dist_dir.parent
+    bundle_zip = dist_dir / "ClipSave-iOS-Bundle.zip"
+    with zipfile.ZipFile(bundle_zip, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+        zf.write(menu_out, arcname=menu_out.name)
+        zf.write(onetap_out, arcname=onetap_out.name)
+        for helper_name in ("sign_on_mac.sh", "GUIDE_IOS.md"):
+            helper_path = shortcut_root / helper_name
+            if helper_path.is_file():
+                zf.write(helper_path, arcname=helper_name)
+
     print(f"Generated: {menu_out}")
     print(f"Generated: {onetap_out}")
+    print(f"Packaged:  {bundle_zip}")
 
 
 if __name__ == "__main__":

@@ -13,8 +13,10 @@ def test_generate_and_validate_shortcuts():
     dist_dir = Path(__file__).resolve().parents[2] / "shortcut" / "dist"
     menu_file = dist_dir / "ClipSave.unsigned.shortcut"
     onetap_file = dist_dir / "ClipSave-1Tap.unsigned.shortcut"
+    bundle_zip = dist_dir / "ClipSave-iOS-Bundle.zip"
 
     assert menu_file.is_file()
     assert onetap_file.is_file()
+    assert bundle_zip.is_file()
     assert validate_shortcut_file(menu_file) == []
     assert validate_shortcut_file(onetap_file) == []
