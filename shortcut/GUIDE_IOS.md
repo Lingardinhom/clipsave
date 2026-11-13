@@ -21,45 +21,50 @@ Do Apple yêu cầu mọi file `.shortcut` từ iOS 15 trở lên phải đượ
 
 ---
 
-## Cách 2: Bạn chỉ dùng iPhone (Không cần Mac — Ký trực tiếp trên điện thoại)
+## Cách 2: Bạn chỉ dùng iPhone (Ký file `.unsigned.shortcut` ngay trên điện thoại)
 
-1. Tải sẵn file chưa ký từ repo GitHub về ứng dụng **Tệp (Files)** trên iPhone:
-   - Phím tắt có Menu chọn chất lượng: `https://github.com/Lingardinhom/clipsave/raw/main/shortcut/dist/ClipSave.unsigned.shortcut`
-   - Phím tắt 1-chạm (giống Snap Video): `https://github.com/Lingardinhom/clipsave/raw/main/shortcut/dist/ClipSave-1Tap.unsigned.shortcut`
+> [!WARNING]
+> **Không bấm mở trực tiếp file `.unsigned.shortcut` trong app Tệp/Safari** — iPhone sẽ báo lỗi *"Không thể cài do nguồn không hợp lệ / chưa được ký"*. Bạn cần ký nó qua phím tắt trung gian dưới đây:
+
+1. Tải file về app **Tệp (Files)** trên iPhone (chọn lưu về Tệp, không mở ngay):
+   - Bản có Menu chọn chất lượng: `https://github.com/Lingardinhom/clipsave/raw/main/shortcut/dist/ClipSave.unsigned.shortcut`
+   - Bản 1-chạm (giống Snap Video): `https://github.com/Lingardinhom/clipsave/raw/main/shortcut/dist/ClipSave-1Tap.unsigned.shortcut`
 2. Cài phím tắt ký file miễn phí trên RoutineHub: **Sign Shortcut File** (`https://routinehub.co/shortcut/26044/`).
-3. Chạy **Sign Shortcut File** trên iPhone và chọn file `.unsigned.shortcut` vừa tải → phím tắt sẽ tự ký qua dịch vụ Apple/HubSign và mở màn hình **"Thêm phím tắt (Add Shortcut)"** cho bạn.
+3. Chạy **Sign Shortcut File** → chọn file `.unsigned.shortcut` trong Tệp → chờ vài giây để ký → bấm **Thêm phím tắt (Add Shortcut)**.
 4. Nhập **Server URL** và **API Key** khi được hỏi lúc thêm phím tắt.
 
 ---
 
-## Cách 3: Tự lắp ráp 10 bước trên iPhone (Không cần tải file nào)
+## Cách 3: Tự bấm tạo 7 bước ngay trên iPhone (Chắc chắn 100%, chỉ mất 90 giây)
 
-Vì toàn bộ logic tải & ghép video nằm trên Backend API, phím tắt trên iPhone cực kỳ gọn. Bạn mở app **Phím tắt (Shortcuts)** → bấm **+** → thêm đúng thứ tự các hành động dưới đây:
+Nếu tự tạo trực tiếp trong app **Phím tắt (Shortcuts)** trên iPhone, Apple tin cậy 100% và không bao giờ gặp lỗi nguồn không hợp lệ.
 
-1. **Văn bản (Text)**: Nhập URL server của bạn (ví dụ `https://clipsave.yourdomain.com`) → **Đặt biến (Set Variable)** tên `ServerURL`.
-2. **Văn bản (Text)**: Nhập `API_KEY` của bạn → **Đặt biến (Set Variable)** tên `APIKey`.
-3. **Nếu (If)** `Đầu vào phím tắt (Shortcut Input)` *có bất kỳ giá trị nào*:
-   - **Văn bản (Text)**: chèn `Shortcut Input`
-   - **Không thì (Otherwise)**: **Lấy bảng nhớ tạm (Get Clipboard)**
-   - **Kết thúc Nếu (End If)**
-4. **Lấy URL từ đầu vào (Get URLs from Input)** từ `Kết quả Nếu (If Result)`.
-5. **Lấy mục từ danh sách (Get Item from List)**: `Mục đầu tiên (First Item)` → **Đặt biến** tên `TargetURL`.
-6. **Lấy nội dung của URL (Get Contents of URL)**:
-   - **URL**: `[ServerURL]/api/v1/resolve`
-   - **Phương thức (Method)**: `POST`
-   - **Tiêu đề (Headers)**: `X-API-Key` = `[APIKey]`
-   - **Phần thân yêu cầu (Request Body)**: `JSON`
-     - `url` (Text): `[TargetURL]`
-     - `mode` (Text): `auto` *(hoặc `audio` nếu muốn tải nhạc)*
-     - `quality` (Text): `best`
-     - `ios_compatible` (Boolean): `True`
-7. **Lấy giá trị từ từ điển (Get Dictionary Value)**: Khóa `items` từ `Nội dung của URL (Contents of URL)`.
-8. **Lặp lại với mỗi mục (Repeat with Each)** trong `Giá trị từ điển`:
-   - **Lấy giá trị từ từ điển**: Khóa `download_url` từ `Mục lặp lại (Repeat Item)`.
-   - **Lấy nội dung của URL**: URL = `Giá trị từ điển` *(Phương thức GET)*.
-   - **Lưu vào Album Ảnh (Save to Photo Album)**: Lưu `Nội dung của URL` vào album `Gần đây (Recents)` hoặc tạo album `ClipSave`.
-9. **Kết thúc Lặp lại (End Repeat)**.
-10. **Hiển thị thông báo (Show Notification)**: `"ClipSave: Đã lưu xong không watermark!"`.
+Mở app **Phím tắt** → bấm **+** → bấm **(i)** ở dưới cùng → bật **Hiển thị trong Bảng chia sẻ (Show in Share Sheet)** → chọn **URL**, **Trang web Safari**, **Văn bản**.
+Sau đó chạm vào thẻ **Nhận đầu vào (Receive ... input)** trên cùng → ở mục *"Nếu không có đầu vào (If there's no input)"* chọn **Lấy bảng nhớ tạm (Get Clipboard)**.
+
+Thêm đúng **7 hành động** sau:
+
+1. **Lấy URL từ đầu vào** *(Get URLs from Input)* → chọn đầu vào là **Đầu vào phím tắt** *(Shortcut Input)*.
+2. **Lấy nội dung của URL** *(Get Contents of URL)*:
+   - **URL**: `https://<server-của-bạn>/api/v1/resolve` *(chỉnh lại thành URL server của bạn)*
+   - Bấm mũi tên mở rộng **▶**:
+     - **Phương thức (Method)**: `POST`
+     - **Tiêu đề (Headers)**: Thêm khóa `X-API-Key` = `<API_KEY của bạn>`
+     - **Phần thân yêu cầu (Request Body)**: `JSON` → thêm 4 trường:
+       - `url` (Văn bản/Text): chọn biến **URL** (từ bước 1)
+       - `mode` (Văn bản/Text): `auto`
+       - `quality` (Văn bản/Text): `best`
+       - `ios_compatible` (Boolean): `Đúng (True)`
+3. **Lấy giá trị từ từ điển** *(Get Dictionary Value)*:
+   - **Khóa (Key)**: `items`
+   - **Từ điển (Dictionary)**: **Nội dung của URL** *(Contents of URL)* (từ bước 2).
+4. **Lặp lại với mỗi mục** *(Repeat with Each)* trong **Giá trị từ điển** (từ bước 3).
+5. *(Bên trong vòng lặp)* **Lấy giá trị từ từ điển** *(Get Dictionary Value)*:
+   - **Khóa (Key)**: `download_url`
+   - **Từ điển (Dictionary)**: **Mục lặp lại** *(Repeat Item)*.
+6. *(Bên trong vòng lặp)* **Lấy nội dung của URL** *(Get Contents of URL)* → URL là **Giá trị từ từ điển** (từ bước 5), phương thức `GET`.
+7. *(Bên trong vòng lặp)* **Lưu vào Album Ảnh** *(Save to Photo Album)* → lưu **Nội dung của URL** (từ bước 6) vào `Gần đây (Recents)` (hoặc album `ClipSave`).
+8. **Kết thúc Lặp lại** *(End Repeat)* → thêm **Hiển thị thông báo** *(Show Notification)*: `"Đã lưu video không watermark!"`.
 
 ---
 
