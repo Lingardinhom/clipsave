@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: clipsave-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: API_KEY
+        generateValue: true
+      - key: ENABLE_WEB_UI
+        value: "true"
+      - key: AUTO_UPDATE_YTDLP
+        value: "true"
+      - key: FILE_TTL_SECONDS
+        value: "600"

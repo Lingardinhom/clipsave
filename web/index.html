@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>ClipSave — Tải Video Đa Nền Tảng Không Watermark</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div class="badge">iPhone Shortcut + Self-Hosted API</div>
+      <h1>ClipSave</h1>
+      <p class="subtitle">
+        Tải video &amp; album ảnh không watermark từ TikTok, Douyin, Instagram, Facebook, Threads, YouTube, X, Xiaohongshu...
+      </p>
+    </header>
+
+    <section class="card">
+      <form id="resolveForm" class="form">
+        <label class="field">
+          <span>Liên kết hoặc nội dung chia sẻ</span>
+          <div class="input-row">
+            <input
+              id="urlInput"
+              type="text"
+              placeholder="Dán link TikTok, Douyin, IG, YouTube, X..."
+              required
+              autocomplete="off"
+            />
+            <button type="button" id="pasteBtn" class="btn-secondary">Dán</button>
+          </div>
+        </label>
+
+        <div class="grid-3">
+          <label class="field">
+            <span>Chế độ</span>
+            <select id="modeSelect">
+              <option value="auto" selected>Tự động (Video/Ảnh)</option>
+              <option value="video">Chỉ Video</option>
+              <option value="audio">Chỉ Âm thanh</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Chất lượng</span>
+            <select id="qualitySelect">
+              <option value="best" selected>Tốt nhất</option>
+              <option value="1080p">Tối đa 1080p</option>
+              <option value="720p">Tối đa 720p</option>
+              <option value="480p">Tối đa 480p</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Định dạng Audio</span>
+            <select id="audioSelect">
+              <option value="m4a" selected>M4A (Chuẩn iOS)</option>
+              <option value="mp3">MP3</option>
+            </select>
+          </label>
+        </div>
+
+        <details class="api-box">
+          <summary>Cài đặt API Key (nếu server bật bảo mật)</summary>
+          <label class="field" style="margin-top: 10px;">
+            <span>X-API-Key (lưu trên trình duyệt)</span>
+            <input id="apiKeyInput" type="password" placeholder="Nhập API Key của bạn..." />
+          </label>
+        </details>
+
+        <button type="submit" id="submitBtn" class="btn-primary">
+          <span id="btnText">Phân tích &amp; Tải xuống</span>
+        </button>
+      </form>
+
+      <div id="statusBox" class="status hidden"></div>
+
+      <div id="resultBox" class="result hidden">
+        <div class="result-meta">
+          <span id="platformBadge" class="platform-pill"></span>
+          <h2 id="resultTitle"></h2>
+          <p id="resultAuthor" class="muted"></p>
+        </div>
+        <div id="itemsList" class="items-list"></div>
+      </div>
+    </section>
+
+    <section class="card info-card">
+      <h3>Cài phím tắt ClipSave cho iPhone</h3>
+      <p class="muted">
+        Phím tắt giúp bạn bấm <strong>Chia sẻ (Share)</strong> ngay trong TikTok / Douyin / Instagram / YouTube để lưu video không watermark thẳng vào Album <strong>ClipSave</strong> trong Ảnh.
+      </p>
+      <ul class="tips">
+        <li><strong>Endpoint API:</strong> <code id="endpointPreview"></code></li>
+        <li><strong>File Phím tắt:</strong> Xem thư mục <code>shortcut/dist/</code> và hướng dẫn trong <code>shortcut/GUIDE_IOS.md</code>.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
